@@ -10,7 +10,6 @@ module.exports = {
 };
 
 /**
- * https://segmentfault.com/a/1190000017790694
  * upd: 更新
  * feat: 新增
  * fix: 修复
