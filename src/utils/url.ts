@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-19 23:04:18
+ * @LastEditTime: 2021-05-19 23:37:06
+ */
 import * as url from 'url';
 
 /**
@@ -9,6 +14,7 @@ import * as url from 'url';
  * @param {string} key 获取单独的一个key
  * @return {*}
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const getUrlQuery = (urlPath: string, key?: string): string | object | undefined => {
   const query = url.parse(urlPath, true).query;
   if (key) {

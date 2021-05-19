@@ -1,6 +1,12 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-19 23:04:18
+ * @LastEditTime: 2021-05-19 23:39:52
+ */
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
-export function IsEqual(property: string,validationOptions?: ValidationOptions):Function {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function IsEqual(property: string, validationOptions?: ValidationOptions): Function {
   return function (object: Record<string, any>, propertyName: string) {
     registerDecorator({
       name: 'isEqual',
@@ -14,9 +20,7 @@ export function IsEqual(property: string,validationOptions?: ValidationOptions):
           const [relatedPropertyName] = args.constraints;
           const relatedValue = (args.object as any)[relatedPropertyName];
           return (
-            typeof value === 'string' &&
-            typeof relatedValue === 'string' &&
-            value === relatedValue
+            typeof value === 'string' && typeof relatedValue === 'string' && value === relatedValue
           );
         },
         defaultMessage() {

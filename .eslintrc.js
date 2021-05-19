@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-19 22:41:53
+ * @LastEditTime: 2021-05-19 23:31:40
+ */
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -13,7 +18,6 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint'
   ],
   root: true,
   env: {

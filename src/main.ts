@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-19 22:41:53
+ * @LastEditTime: 2021-05-19 23:28:39
+ */
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -23,7 +28,7 @@ async function bootstrap() {
   // 配置api文档信息(不是生产环境配置文档)
   if (process.env.NODE_ENV != 'production') {
     const options = new DocumentBuilder()
-      .setTitle('权限系统管理  api文档')
+      .setTitle('jin nest  api文档')
       .setDescription('权限系统管理  api接口文档')
       .setBasePath(PREFIX)
       .addBearerAuth({ type: 'apiKey', in: 'header', name: 'token' })
@@ -31,7 +36,7 @@ async function bootstrap() {
       .build();
 
     const document = SwaggerModule.createDocument(app, options);
-    SwaggerModule.setup(`${PREFIX}/docs`, app, document);
+    SwaggerModule.setup(`${PREFIX}/swagger`, app, document);
   }
   // Web漏洞的
   app.use(helmet());
@@ -42,7 +47,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(PORT, () => {
     Logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
-    Logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/${PREFIX}/docs`);
+    Logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/${PREFIX}/swagger`);
   });
 }
 bootstrap();
