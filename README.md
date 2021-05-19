@@ -1,13 +1,14 @@
+<!--
+ * @Author: kingford
+ * @Date: 2021-05-19 22:41:53
+ * @LastEditTime: 2021-05-19 22:51:30
+-->
 ## 一、项目介绍
-
-* 1、项目前端采用`react`开发的，[预览地址](http://admin.yst168.cn/)。前端项目地址
-  * [`github`地址](https://github.com/kuangshp/nestjs-mysql-api-react)
-  * [码云地址](https://gitee.com/k_2021/nestjs-mysql-api-react)
-* 2、采用`angular`模块化开发方式来构建项目，如果你想用`java`的`mvc`方式来开发`nestjs`项目你可以查看`v1`分支。
-* 3、项目是基于`mysql`数据库，项目中全部采用`typeorm`来操作数据库，弱化了原生`sql`，避免前端的小伙伴没有`sql`基础。
-* 4、实现用户名、手机号码、邮箱任一的方式实现登录。
-* 5、使用`jwt`的方式进行登录鉴权，采用自定义装饰器结合守卫来实现对接口鉴权拦截访问。
-* 6、如果你要演示菜单权限和接口权限，请自己创建账号、角色、分配菜单和接口权限。
+* 1、采用`angular`模块化开发方式来构建项目，如果你想用`java`的`mvc`方式来开发`nestjs`项目你可以查看`v1`分支。
+* 2、项目是基于`mysql`数据库，项目中全部采用`typeorm`来操作数据库，弱化了原生`sql`，避免前端的小伙伴没有`sql`基础。
+* 3、实现用户名、手机号码、邮箱任一的方式实现登录。
+* 4、使用`jwt`的方式进行登录鉴权，采用自定义装饰器结合守卫来实现对接口鉴权拦截访问。
+* 5、如果你要演示菜单权限和接口权限，请自己创建账号、角色、分配菜单和接口权限。
 
 ## 二、使用项目
 
@@ -59,14 +60,3 @@
   ```shell
   pm2 log
   ```
-
-
-## 三、技术解答
-
-> 本项目还在持续集成新功能进来,最后会加上前端做一个`cms`系统的`api`,后期会拉分支使用`graphql`提供`api`
-
-- 1、有关于`nestjs`的技术问题或索要关于`nestjs`的电子书可以直接加我微信(微信号:332904234)<font color="#f00">备注:nest 开发</font>
-
-  <img src="https://shuiping.oss-cn-shenzhen.aliyuncs.com/nest-mysql-api/wx.jpg" width="200" height="220" style="margin-left:0" />
-
-- 2、如果你觉得本项目对你帮助很大,**给一个赞**
