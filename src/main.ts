@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-05-19 22:41:53
- * @LastEditTime: 2021-05-19 23:28:39
+ * @LastEditTime: 2021-05-20 21:03:05
  */
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
@@ -46,8 +46,8 @@ async function bootstrap() {
   // 全局注册拦截器(成功返回格式)
   app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(PORT, () => {
-    Logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
-    Logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/${PREFIX}/swagger`);
+    Logger.log(`服务已经启动,接口请访问:http://localhost:${PORT}/${PREFIX}`);
+    Logger.log(`服务已经启动,文档请访问:http://localhost:${PORT}/${PREFIX}/swagger`);
   });
 }
 bootstrap();
