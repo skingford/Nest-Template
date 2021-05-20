@@ -65,9 +65,6 @@ export class AuthGuard implements CanActivate {
   }
 
   /**
-   * @Author: 水痕
-   * @Date: 2021-03-22 11:13:07
-   * @LastEditors: 水痕
    * @Description: 校验用户传递过来的token
    * @param {string} token
    * @param {string} secret
