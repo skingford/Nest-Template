@@ -22,9 +22,9 @@ export class InitDbService {
   }
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-04-05 21:56:38
-   * @LastEditors: 水痕
+   *
    * @Description: 初始化账号
    * @param {*}
    * @return {*}
@@ -40,9 +40,9 @@ export class InitDbService {
   }
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-04-05 21:56:56
-   * @LastEditors: 水痕
+   *
    * @Description: 初始化资源
    * @param {*}
    * @return {*}

@@ -20,9 +20,9 @@ export class RoleService {
   ) {}
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-03-23 13:38:11
-   * @LastEditors: 水痕
+   *
    * @Description: 创建角色
    * @param {CreateRoleDto} createRoleDto
    * @return {*}
@@ -49,21 +49,18 @@ export class RoleService {
   }
 
   /**
-   * @Author: 水痕
    * @Date: 2021-03-23 14:15:06
-   * @LastEditors: 水痕
    * @Description: 根据角色id删除角色
    * @param {number} id
    * @return {*}
    */
   async destroyRoleById(id: number): Promise<string> {
     // 判断当前角色是否已经被占用(有账号绑定了该角色)
-    const accountRoleFindResult:
-      | AccountRoleEntity
-      | undefined = await this.accountRoleRepository.findOne({
-      where: { roleId: id },
-      select: ['id'],
-    });
+    const accountRoleFindResult: AccountRoleEntity | undefined =
+      await this.accountRoleRepository.findOne({
+        where: { roleId: id },
+        select: ['id'],
+      });
     if (accountRoleFindResult) {
       throw new HttpException('当前角色有账号与之绑定,不能直接删除', HttpStatus.OK);
     }
@@ -78,9 +75,9 @@ export class RoleService {
   }
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-03-23 14:26:46
-   * @LastEditors: 水痕
+   *
    * @Description: 根据角色id修改角色
    * @param {number} id
    * @param {UpdateRoleDto} updateRoleDto
@@ -108,9 +105,9 @@ export class RoleService {
   }
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-03-23 14:40:13
-   * @LastEditors: 水痕
+   *
    * @Description: 根据角色id查询角色
    * @param {number} id
    * @return {*}
@@ -120,9 +117,9 @@ export class RoleService {
   }
 
   /**
-   * @Author: 水痕
+
    * @Date: 2021-03-23 14:46:45
-   * @LastEditors: 水痕
+   *
    * @Description: 查询角色列表
    * @param {RoleReqDto} roleReqDto
    * @return {*}
