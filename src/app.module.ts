@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-05-19 22:41:53
- * @LastEditTime: 2021-05-21 11:57:28
+ * @LastEditTime: 2021-05-21 11:59:21
  */
 import * as path from 'path';
 
@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './modules/common/common.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { AdminModule } from './modules/admin/admin.module';
-//import { NavigationModule } from './modules/navigation/navigation.module';
+import { NavigationModule } from './modules/navigation/navigation.module';
 import { FrontModule } from './modules/front/front.module';
 
 import { LoggingInterceptor } from './interceptors/logging/logging.interceptor';
@@ -55,6 +55,7 @@ import { ValidationPipe } from './pipe/validation/validation.pipe';
     SharedModule,
     AdminModule,
     FrontModule,
+    NavigationModule,
   ],
   controllers: [],
   providers: [

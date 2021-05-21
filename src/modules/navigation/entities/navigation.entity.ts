@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-05-21 00:32:52
- * @LastEditTime: 2021-05-21 11:54:11
+ * @LastEditTime: 2021-05-21 12:04:10
  */
 import { Column, Entity, Index, Unique } from 'typeorm';
 import { PublicEntity } from '@src/modules/shared/entities/public.entity';
@@ -29,7 +29,7 @@ export class NavigationEntity extends PublicEntity {
   actionName: string;
 
   @Column({
-    type: 'number',
+    type: 'int',
     nullable: false,
     name: 'categoryId',
     comment: '所属类型',
