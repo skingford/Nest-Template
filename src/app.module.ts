@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-19 22:41:53
+ * @LastEditTime: 2021-05-21 11:57:28
+ */
 import * as path from 'path';
 
 import { Module } from '@nestjs/common';
@@ -5,10 +10,11 @@ import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AdminModule } from './modules/admin/admin.module';
-import { FrontModule } from './modules/front/front.module';
 import { CommonModule } from './modules/common/common.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { AdminModule } from './modules/admin/admin.module';
+//import { NavigationModule } from './modules/navigation/navigation.module';
+import { FrontModule } from './modules/front/front.module';
 
 import { LoggingInterceptor } from './interceptors/logging/logging.interceptor';
 import { ValidationPipe } from './pipe/validation/validation.pipe';
@@ -45,10 +51,10 @@ import { ValidationPipe } from './pipe/validation/validation.pipe';
       }),
       inject: [ConfigService],
     }),
-    AdminModule,
-    FrontModule,
     CommonModule,
     SharedModule,
+    AdminModule,
+    FrontModule,
   ],
   controllers: [],
   providers: [

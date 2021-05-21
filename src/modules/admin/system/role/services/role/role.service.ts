@@ -22,7 +22,6 @@ export class RoleService {
   /**
 
    * @Date: 2021-03-23 13:38:11
-   *
    * @Description: 创建角色
    * @param {CreateRoleDto} createRoleDto
    * @return {*}
