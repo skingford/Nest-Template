@@ -53,13 +53,14 @@ export class AccountService {
       const { username, email, mobile } = findAccount;
       if (usernameReg.test(username)) {
         return '创建失败,已经存在该用户名';
-      } else if (isMobilePhone(mobile, 'zh-CN')) {
-        return '创建失败,已经存在该手机号码';
-      } else if (isEmail(email)) {
-        return '创建失败,已经存在该邮箱号';
-      } else {
-        return '创建失败';
       }
+      if (isMobilePhone(mobile, 'zh-CN')) {
+        return '创建失败,已经存在该手机号码';
+      }
+      if (isEmail(email)) {
+        return '创建失败,已经存在该邮箱号';
+      }
+      return '创建失败';
     } else {
       const account = this.accountRepository.create({
         ...createAccountDto,
@@ -86,9 +87,8 @@ export class AccountService {
     });
     if (affectedRows) {
       return '重置成功';
-    } else {
-      return '重置失败';
     }
+    return '重置失败';
   }
 
   /**
@@ -141,9 +141,8 @@ export class AccountService {
       });
       if (affectedRows) {
         return '修改成功';
-      } else {
-        return '修改失败';
       }
+      return '修改失败';
     } else {
       throw new HttpException('你输入的旧密码错误或输入的账号id不存在', HttpStatus.OK);
     }

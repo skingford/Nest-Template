@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-05-20 21:04:12
+ * @LastEditTime: 2021-05-21 13:37:25
+ */
 import {
   CanActivate,
   ExecutionContext,
@@ -39,10 +44,9 @@ export class AuthGuard implements CanActivate {
             const method = request.method;
             const url = request.url;
             return this.apiAuthService.apiAuth(user, method, url);
-          } else {
-            console.log('11不走资源守卫');
-            return true;
           }
+          console.log('11不走资源守卫');
+          return true;
         } else {
           throw new HttpException(
             JSON.stringify({

@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-05-19 22:41:53
- * @LastEditTime: 2021-05-20 21:03:05
+ * @LastEditTime: 2021-05-21 13:17:37
  */
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
@@ -29,7 +29,7 @@ async function bootstrap() {
   if (process.env.NODE_ENV != 'production') {
     const options = new DocumentBuilder()
       .setTitle('jin nest  api文档')
-      .setDescription('权限系统管理  api接口文档')
+      .setDescription('jin管理  api接口文档')
       .setBasePath(PREFIX)
       .addBearerAuth({ type: 'apiKey', in: 'header', name: 'token' })
       .setVersion('0.0.1')
