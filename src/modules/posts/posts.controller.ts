@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 09:59:23
- * @LastEditTime: 2021-09-05 13:13:47
+ * @LastEditTime: 2021-09-05 13:36:04
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -18,9 +18,12 @@ import {
   Body,
 } from '@nestjs/common';
 import { CreateDto, UpdateDto } from './dto';
+import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
+  constructor(private readonly postsService: PostsService) {}
+
   @Get()
   findAll(): string {
     return 'This action returns all posts';
@@ -35,6 +38,7 @@ export class PostsController {
   @Post()
   create(@Body() createDto: CreateDto): string {
     console.log(createDto);
+    this.postsService.create(createDto);
     return 'This action adds a new post';
   }
 
