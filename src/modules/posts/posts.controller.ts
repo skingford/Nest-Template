@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 09:59:23
- * @LastEditTime: 2021-09-05 13:36:04
+ * @LastEditTime: 2021-09-05 23:14:05
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -16,17 +16,32 @@ import {
   Param,
   HttpCode,
   Body,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
+import { ApiUseTags } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
-
 @Controller('posts')
+@ApiUseTags('帖子')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
   findAll(): string {
     return 'This action returns all posts';
+  }
+
+  @Get('/error')
+  error() {
+    //throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    throw new HttpException(
+      {
+        status: HttpStatus.FORBIDDEN,
+        error: 'This is a custom message',
+      },
+      HttpStatus.FORBIDDEN,
+    );
   }
 
   @Get(':id')

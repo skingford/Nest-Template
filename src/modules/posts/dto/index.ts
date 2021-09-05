@@ -1,16 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 13:04:59
- * @LastEditTime: 2021-09-05 13:13:56
+ * @LastEditTime: 2021-09-05 23:13:31
  */
-export class CreateDto {
-  name: string;
-  age: number;
-  breed: string;
-}
-
-export class UpdateDto {
-  name: string;
-  age: number;
-  breed: string;
-}
+export * from './create-posts.dto';
+export * from './update-posts.dto';
