@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 23:08:30
- * @LastEditTime: 2021-09-05 23:12:50
+ * @LastEditTime: 2021-09-06 08:52:17
  */
 import { ApiModelProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';

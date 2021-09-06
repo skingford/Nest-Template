@@ -1,9 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 13:04:59
- * @LastEditTime: 2021-09-05 23:12:55
+ * @LastEditTime: 2021-09-06 08:48:10
  */
-import { ApiUseTags, ApiOperation, ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
 export class UpdateDto {
