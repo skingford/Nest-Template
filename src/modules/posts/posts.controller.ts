@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-06 08:39:06
- * @LastEditTime: 2021-09-06 08:44:57
+ * @LastEditTime: 2021-09-06 20:54:55
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -19,11 +19,11 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { ApiUseTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
 @Controller('posts')
-@ApiUseTags('帖子')
+@ApiTags('帖子')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
