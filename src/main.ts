@@ -1,16 +1,29 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-04 21:28:38
- * @LastEditTime: 2021-09-06 20:59:39
+ * @LastEditTime: 2021-09-08 01:38:41
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { setupSwagger } from './config/setupSwagger';
+import { ReportLogger } from '@/modules/log/ReportLogger';
+import { setupSwagger, setupGlobalInterceptors } from '@/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const reportLogger = new ReportLogger();
 
-  // config swagger
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: ['http://localhost', 'http://localhost:3000'],
+      credentials: true,
+    },
+    bufferLogs: true,
+    logger: reportLogger,
+  });
+
+  // 全局拦截器
+  setupGlobalInterceptors(app);
+
+  // swagger文档
   setupSwagger(app);
 
   await app.listen(3000);

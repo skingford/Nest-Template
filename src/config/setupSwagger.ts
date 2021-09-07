@@ -1,9 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 23:02:26
- * @LastEditTime: 2021-09-05 23:06:22
+ * @LastEditTime: 2021-09-08 01:15:34
  */
-import { INestApplication } from '@nestjs/common';
+import type { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 export function setupSwagger(app: INestApplication) {
