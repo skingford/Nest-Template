@@ -20,7 +20,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
-import { PostsEntity } from '@/modules/posts/entities/posts.entity';
+import { Posts } from '@/modules/posts/entities/posts.entity';
 
 @Controller('posts')
 @ApiTags('帖子')
@@ -28,17 +28,17 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  async findAll(): Promise<PostsEntity[]> {
+  async findAll(): Promise<Posts[]> {
     return this.postsService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<PostsEntity> {
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Posts> {
     return this.postsService.findOne(id);
   }
 
   @Post()
-  async create(@Body() createDto: CreateDto): Promise<PostsEntity> {
+  async create(@Body() createDto: CreateDto): Promise<Posts> {
     return this.postsService.create(createDto);
   }
 
