@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-04 21:28:38
- * @LastEditTime: 2021-09-08 09:01:28
+ * @LastEditTime: 2021-09-09 00:01:50
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';

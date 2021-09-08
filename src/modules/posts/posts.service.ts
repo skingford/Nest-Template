@@ -1,5 +1,10 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-09-08 23:16:36
+ * @LastEditTime: 2021-09-08 23:50:32
+ */
 import { Injectable } from '@nestjs/common';
-import { Posts } from '@/modules/posts/entities/posts.entity';
+import { PostEntity } from '@/modules/posts/entities/posts.entity';
 import { PostsRepository } from '@/db/repositories/postRepository';
 import { CreateDto, UpdateDto } from './dto';
 
@@ -7,19 +12,19 @@ import { CreateDto, UpdateDto } from './dto';
 export class PostsService {
   constructor(private postsRepository: PostsRepository) {}
 
-  async create(createDto: CreateDto): Promise<Posts> {
+  async create(createDto: CreateDto): Promise<PostEntity> {
     const { title, content } = createDto;
-    const posts = new Posts();
+    const posts = new PostEntity();
     posts.title = title;
     posts.content = content;
     return this.postsRepository.save(posts);
   }
 
-  async findAll(): Promise<Posts[]> {
+  async findAll(): Promise<PostEntity[]> {
     return this.postsRepository.find();
   }
 
-  async findOne(id: number): Promise<Posts> {
+  async findOne(id: number): Promise<PostEntity> {
     return this.postsRepository.findOne(id);
   }
 
