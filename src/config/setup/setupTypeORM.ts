@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-08 01:23:38
+ * @LastEditTime: 2021-09-08 22:02:11
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -23,8 +23,10 @@ export function setupTypeORM() {
       const { host, port, username, password, database } =
         configService.get('db');
 
+      console.log(configService.get('db'));
+
       return {
-        type: 'mariadb',
+        type: 'mysql',
         // .env 获取
         host,
         port,

@@ -1,19 +1,40 @@
-/*
-https://docs.nestjs.com/providers#services
-*/
-
 import { Injectable } from '@nestjs/common';
-import { Posts } from './interface/post.interface';
+import { PostsEntity } from '@/modules/posts/entities/posts.entity';
+import { PostsRepository } from '@/db/repositories/postRepository';
+import { CreateDto, UpdateDto } from './dto';
+
 @Injectable()
 export class PostsService {
-  private readonly posts: Posts[] = [];
+  constructor(private postsRepository: PostsRepository) {}
 
-  create(posts: Posts) {
-    this.posts.push(posts);
-    console.log(this.posts);
+  async create(createDto: CreateDto): Promise<PostsEntity> {
+    const { title, content } = createDto;
+    const posts = new PostsEntity();
+    posts.title = title;
+    posts.content = content;
+    return this.postsRepository.save(posts);
   }
 
-  findAll(): Posts[] {
-    return this.posts;
+  async findAll(): Promise<PostsEntity[]> {
+    return this.postsRepository.find();
+  }
+
+  async findOne(id: number): Promise<PostsEntity> {
+    return this.postsRepository.findOne(id);
+  }
+
+  async update(id: number, updateDto: UpdateDto) {
+    const { title, content } = updateDto;
+
+    return this.postsRepository.update(id, {
+      title,
+      content,
+    });
+  }
+
+  async remove(id: number) {
+    return this.postsRepository.delete({
+      id,
+    });
   }
 }
