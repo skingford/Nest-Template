@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-08 01:49:36
+ * @LastEditTime: 2021-09-08 08:58:16
  */
 import { ConsoleLogger } from '@nestjs/common';
 
@@ -30,4 +30,8 @@ export class ReportLogger extends ConsoleLogger {
     console.error('【Error】日志上报', message);
     super.error.apply(this, arguments);
   }
+}
+
+export function setupReportLogger() {
+  return new ReportLogger();
 }

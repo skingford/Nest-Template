@@ -1,46 +1,51 @@
-import { User } from '../../src/user/entities/user.entity';
-import { Todo, TodoStatus } from '../../src/todo/entities/todo.entity';
-import { Random, mock } from 'mockjs';
+/*
+ * @Author: kingford
+ * @Date: 2021-09-08 08:46:57
+ * @LastEditTime: 2021-09-08 08:57:24
+ */
+// import { User } from '../../src/user/entities/user.entity';
+// import { Todo, TodoStatus } from '../../src/todo/entities/todo.entity';
+// import { Random, mock } from 'mockjs';
 
-export const getInitUsers = () => {
-  const admin = new User();
-  admin.email = 'admin@admin.com';
-  admin.username = 'admin';
-  admin.password = 'admin';
-  admin.is_admin = 1;
+// export const getInitUsers = () => {
+//   const admin = new User();
+//   admin.email = 'admin@admin.com';
+//   admin.username = 'admin';
+//   admin.password = 'admin';
+//   admin.is_admin = 1;
 
-  const user = new User();
-  user.email = 'user@admin.com';
-  user.username = 'user';
-  user.password = 'user';
-  user.is_admin = 0;
+//   const user = new User();
+//   user.email = 'user@admin.com';
+//   user.username = 'user';
+//   user.password = 'user';
+//   user.is_admin = 0;
 
-  return [admin, user];
-};
+//   return [admin, user];
+// };
 
-export const getRandomUser = (todos?: Todo[]): User => {
-  const user = new User();
+// export const getRandomUser = (todos?: Todo[]): User => {
+//   const user = new User();
 
-  user.username = Random.cname();
-  user.email = Random.email();
-  user.password = '123456';
-  user.is_admin = Random.natural(0, 1);
-  user.todos = todos || [];
+//   user.username = Random.cname();
+//   user.email = Random.email();
+//   user.password = '123456';
+//   user.is_admin = Random.natural(0, 1);
+//   user.todos = todos || [];
 
-  return user;
-};
+//   return user;
+// };
 
-export const getRandomTodo = (): Todo => {
-  const todo = new Todo();
+// export const getRandomTodo = (): Todo => {
+//   const todo = new Todo();
 
-  todo.title = Random.ctitle();
-  todo.description = Random.csentence();
-  todo.status = mock({
-    'array|1': [TodoStatus.TODO, TodoStatus.DONE],
-  }).array;
-  todo.media = Random.boolean()
-    ? Random.image('200x200', '#02adea', '测试')
-    : '';
+//   todo.title = Random.ctitle();
+//   todo.description = Random.csentence();
+//   todo.status = mock({
+//     'array|1': [TodoStatus.TODO, TodoStatus.DONE],
+//   }).array;
+//   todo.media = Random.boolean()
+//     ? Random.image('200x200', '#02adea', '测试')
+//     : '';
 
-  return todo;
-};
+//   return todo;
+// };

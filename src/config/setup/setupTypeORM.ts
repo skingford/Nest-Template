@@ -5,7 +5,7 @@
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { useEnvConfig } from './useEnvConfig';
+import { useEnvConfig } from '../hooks/useEnvConfig';
 const DOCKER_ENV = process.env.DOCKER_ENV;
 
 export function setupConfigModule() {
