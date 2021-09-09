@@ -1,12 +1,15 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:40:25
- * @LastEditTime: 2021-09-09 20:57:50
+ * @LastEditTime: 2021-09-09 21:00:46
  */
 export const useEnvConfig = () => {
   const { env } = process;
 
   return {
+    app: {
+      port: env.PORT || 3000,
+    },
     db: {
       type: env.TYPEORM_CONNECTION,
       database: env.TYPEORM_DATABASE,
