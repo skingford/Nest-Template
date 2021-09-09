@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 23:02:26
- * @LastEditTime: 2021-09-08 01:15:34
+ * @LastEditTime: 2021-09-09 23:30:58
  */
 import type { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -13,5 +13,5 @@ export function setupSwagger(app: INestApplication) {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('swagger', app, document);
 }
