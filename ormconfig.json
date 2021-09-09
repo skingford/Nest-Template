@@ -1,3 +1,0 @@
-{
-  "entities": ["dist/**/*.entity{.ts,.js}", "src/**/*.entity{.ts,.js}"]
-}

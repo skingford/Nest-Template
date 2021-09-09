@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-09 17:31:08
+ * @LastEditTime: 2021-09-09 17:50:59
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -27,13 +27,13 @@ export function setupTypeORM() {
 
       return {
         type: 'mysql',
-        // .env 获取
         host,
         port,
         username,
         password,
         database,
-        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+        entities: ['dist/**/*.entity{.ts,.js}'],
+        // entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         synchronize: false,
       };
     },
