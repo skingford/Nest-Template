@@ -1,11 +1,11 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 23:16:36
- * @LastEditTime: 2021-09-08 23:50:32
+ * @LastEditTime: 2021-09-09 23:51:09
  */
 import { Injectable } from '@nestjs/common';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
-import { PostsRepository } from '@/db/repositories/postRepository';
+import { PostsRepository } from '@/modules/posts/repositories/postRepository';
 import { CreateDto, UpdateDto } from './dto';
 
 @Injectable()
