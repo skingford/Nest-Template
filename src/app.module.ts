@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-07 23:55:18
- * @LastEditTime: 2021-09-09 18:55:16
+ * @LastEditTime: 2021-09-09 20:41:10
  */
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -18,9 +18,10 @@ const CONFIG_LIST = [
     imports: [ConfigModule],
     inject: [ConfigService],
     useFactory: async (config: ConfigService) => {
-      const { host, port, username, password, database } = config.get('db');
+      const { type, host, port, username, password, database } =
+        config.get('db');
       return {
-        type: 'mysql',
+        type,
         host,
         port,
         username,
