@@ -1,14 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-10 00:27:33
+ * @LastEditTime: 2021-09-10 00:35:46
  */
 import { ApiProperty } from '@nestjs/swagger';
-// import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import {
-  // BeforeInsert,
-  // BeforeUpdate,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   PrimaryGeneratedColumn,
@@ -37,10 +37,10 @@ export class User {
   @Column('int', { default: 1 })
   is_admin?: number;
 
-  // @BeforeInsert()
-  // @BeforeUpdate()
-  // private async hashPassword() {
-  //   const salt = await bcrypt.genSalt();
-  //   this.password = await bcrypt.hash(this.password, salt);
-  // }
+  @BeforeInsert()
+  @BeforeUpdate()
+  private async hashPassword() {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+  }
 }
