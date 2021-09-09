@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-09 20:55:47
+ * @LastEditTime: 2021-09-09 20:58:01
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -24,7 +24,7 @@ function setupTypeORM() {
     imports: [ConfigModule],
     inject: [ConfigService],
     useFactory: async (config: ConfigService) => {
-      const { type, host, port, username, password, database } =
+      const { type, host, port, username, password, database, synchronize } =
         config.get('db');
 
       console.log('cwd-root:', process.cwd());
@@ -37,7 +37,7 @@ function setupTypeORM() {
         database,
         entities: [ENTITY_DIR],
         logging: true,
-        synchronize: false, // 同步数据库
+        synchronize, // 同步数据库
         timezone: '+08:00', // 东八区
         cache: {
           duration: 60000, // 1分钟的缓存
