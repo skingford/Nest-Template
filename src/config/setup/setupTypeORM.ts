@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-09 17:11:46
+ * @LastEditTime: 2021-09-09 17:31:08
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -33,7 +33,7 @@ export function setupTypeORM() {
         username,
         password,
         database,
-        entities: ['dist/**/*.entity{.ts,.js}', 'src/**/*.entity.{ts}'],
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         synchronize: false,
       };
     },
