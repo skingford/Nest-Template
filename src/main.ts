@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-04 21:28:38
- * @LastEditTime: 2021-09-11 20:26:07
+ * @LastEditTime: 2021-09-11 21:00:24
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -22,7 +22,7 @@ export const IS_DEV = process.env.NODE_ENV === 'development';
 async function bootstrap() {
   const logger: Logger = new Logger('main.ts');
   const app = await NestFactory.create(AppModule, useNestFactoryConfig());
-  // 全局配置
+  // 全局配置,要在swagger之前
   setupAppConfig(app);
 
   // swagger文档

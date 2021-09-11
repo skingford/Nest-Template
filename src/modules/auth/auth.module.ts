@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-09-08 00:17:37
+ * @LastEditTime: 2021-09-11 21:19:39
+ */
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -26,6 +31,7 @@ import { LogModule } from '../log/log.module';
     AuthService,
     LocalStrategy,
     JwtStrategy,
+    // 全局启用身份验证
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
   exports: [AuthService],

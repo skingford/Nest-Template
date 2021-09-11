@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-06 08:39:06
- * @LastEditTime: 2021-09-09 23:51:15
+ * @LastEditTime: 2021-09-11 22:16:45
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -21,8 +21,10 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
+import { SkipJwtAuth } from '@/modules/auth/constants';
 
 @Controller('posts')
+@SkipJwtAuth()
 @ApiTags('帖子')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
