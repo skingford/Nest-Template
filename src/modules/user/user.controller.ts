@@ -1,5 +1,10 @@
 /*
  * @Author: kingford
+ * @Date: 2021-09-11 08:51:10
+ * @LastEditTime: 2021-09-11 15:10:56
+ */
+/*
+ * @Author: kingford
  * @Date: 2021-09-08 00:17:37
  * @LastEditTime: 2021-09-09 23:51:13
  */
@@ -20,8 +25,8 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from '../roles/roles.decorator';
-import { Role } from '../roles/roles.interface';
+import { Roles } from '../auth/roles/roles.decorator';
+import { Role } from '../auth/roles/roles.interface';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { User } from './entities/user.entity';
 
