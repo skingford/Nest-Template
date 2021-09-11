@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-11 17:42:49
+ * @LastEditTime: 2021-09-11 17:48:58
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
@@ -67,7 +67,7 @@ function setupTypeORM() {
 export function setupAppConfig(app: INestApplication) {
   //允许跨域请求
   app.enableCors();
-  console.log('apAPI_PREFIX:', API_PREFIX);
+
   // 给请求添加prefix
   app.setGlobalPrefix(API_PREFIX);
 }
