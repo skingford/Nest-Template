@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-11 21:19:39
+ * @LastEditTime: 2021-09-11 23:11:46
  */
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
@@ -10,7 +10,7 @@ import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
+import { jwtConstants } from './guards/constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';

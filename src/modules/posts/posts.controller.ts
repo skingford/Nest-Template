@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-06 08:39:06
- * @LastEditTime: 2021-09-11 22:16:45
+ * @LastEditTime: 2021-09-11 23:11:36
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -21,7 +21,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
-import { SkipJwtAuth } from '@/modules/auth/constants';
+import { SkipJwtAuth } from '@/modules/auth/guards/constants';
 
 @Controller('posts')
 @SkipJwtAuth()

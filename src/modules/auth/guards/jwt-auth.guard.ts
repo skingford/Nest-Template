@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-09-08 00:17:37
+ * @LastEditTime: 2021-09-11 23:11:38
+ */
 import {
   ExecutionContext,
   Injectable,
@@ -6,7 +11,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
-import { IS_PUBLIC_KEY } from '../constants';
+import { IS_PUBLIC_KEY } from './constants';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
