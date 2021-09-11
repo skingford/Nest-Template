@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 16:22:07
- * @LastEditTime: 2021-09-12 01:27:54
+ * @LastEditTime: 2021-09-12 01:30:37
  */
 import {
   ArgumentsHost,
@@ -34,7 +34,6 @@ export class AllExceptionFilter implements ExceptionFilter {
         Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         `;
 
-    Logger.info(logFormat);
     Logger.error(logFormat);
 
     response.status(status).json({

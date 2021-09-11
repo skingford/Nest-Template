@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 22:45:29
- * @LastEditTime: 2021-09-12 01:24:52
+ * @LastEditTime: 2021-09-12 01:32:46
  */
 
 import {
@@ -26,11 +26,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
     Method: ${request.method},
     IP: ${request.ip},
     Status code: ${status},
-    timestamp: new Date().toISOString(),
+    timestamp: ${new Date().toISOString()},
     Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     `;
 
-    Logger.info(logFormat);
     Logger.error(logFormat);
 
     console.log('HttpExceptionFilter:', exception);
