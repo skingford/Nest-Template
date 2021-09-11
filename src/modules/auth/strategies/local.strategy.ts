@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-09-11 08:51:10
+ * @LastEditTime: 2021-09-11 16:29:12
+ */
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { AuthService } from '../auth.service';
@@ -29,7 +34,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const user = await authService.validateUser(username, password);
 
     if (!user) {
-      this.reportLogger.error('无法登录，SB');
+      this.reportLogger.error('没有权限登录');
       throw new UnauthorizedException();
     }
 

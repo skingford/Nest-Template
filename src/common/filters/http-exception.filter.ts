@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 22:45:29
- * @LastEditTime: 2021-09-05 22:45:30
+ * @LastEditTime: 2021-09-11 16:20:33
  */
 
 import {
@@ -22,8 +22,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     response.status(status).json({
       statusCode: status,
+      message: exception.message,
       timestamp: new Date().toISOString(),
       path: request.url,
+      data: exception.getResponse(),
     });
   }
 }
