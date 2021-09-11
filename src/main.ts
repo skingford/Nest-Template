@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-04 21:28:38
- * @LastEditTime: 2021-09-11 17:52:15
+ * @LastEditTime: 2021-09-11 20:26:07
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -22,14 +22,11 @@ export const IS_DEV = process.env.NODE_ENV === 'development';
 async function bootstrap() {
   const logger: Logger = new Logger('main.ts');
   const app = await NestFactory.create(AppModule, useNestFactoryConfig());
-
-  // swagger文档
-  if (IS_DEV) {
-    setupSwagger(app);
-  }
-
   // 全局配置
   setupAppConfig(app);
+
+  // swagger文档
+  setupSwagger(app);
 
   // 全局过滤器
   setupGlobalFilters(app);
