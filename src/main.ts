@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-04 21:28:38
- * @LastEditTime: 2021-09-11 16:54:03
+ * @LastEditTime: 2021-09-11 17:28:38
  */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -20,9 +20,6 @@ const PORT = process.env.HOST_PORT || 8080;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, useNestFactoryConfig());
 
-  // 全局配置
-  setupAppConfig(app);
-
   // 全局拦截器
   setupGlobalInterceptors(app);
 
@@ -31,6 +28,9 @@ async function bootstrap() {
 
   // 全局管道
   setupGlobalPipes(app);
+
+  // 全局配置
+  setupAppConfig(app);
 
   // swagger文档
   setupSwagger(app);

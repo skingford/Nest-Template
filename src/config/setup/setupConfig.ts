@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-11 17:15:59
+ * @LastEditTime: 2021-09-11 17:18:41
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
@@ -20,7 +20,7 @@ const loadEnvFile = () => {
   return envMap[process.env.NODE_ENV];
 };
 
-// 设置配置
+// 加载配置
 function setupConfigModule() {
   return ConfigModule.forRoot({
     load: [useEnvConfig],
@@ -37,7 +37,6 @@ function setupTypeORM() {
       const { type, host, port, username, password, database, synchronize } =
         config.get('db');
 
-      console.log('cwd-root:', process.cwd());
       return {
         type,
         host,

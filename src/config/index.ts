@@ -1,8 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 01:13:31
- * @LastEditTime: 2021-09-11 16:26:06
+ * @LastEditTime: 2021-09-11 17:23:08
  */
+export * from './setup/setupMiddleware';
 export * from './setup/setupSwagger';
 export * from './setup/setupConfig';
 export * from './setup/setupGlobalFilters';
