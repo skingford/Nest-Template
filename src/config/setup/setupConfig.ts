@@ -1,15 +1,15 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-11 17:18:41
+ * @LastEditTime: 2021-09-11 17:42:49
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { useEnvConfig } from '@/config/hooks/useEnvConfig';
+import { API_PREFIX } from '@/main';
 
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
-export const API_PREFIX = process.env.API_PREFIX || '/';
 
 // 加载环境配置文件
 const loadEnvFile = () => {
@@ -67,7 +67,7 @@ function setupTypeORM() {
 export function setupAppConfig(app: INestApplication) {
   //允许跨域请求
   app.enableCors();
-
+  console.log('apAPI_PREFIX:', API_PREFIX);
   // 给请求添加prefix
   app.setGlobalPrefix(API_PREFIX);
 }
