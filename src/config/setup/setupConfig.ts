@@ -1,20 +1,22 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-11 15:38:10
+ * @LastEditTime: 2021-09-11 17:10:04
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
+import type { INestApplication } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { useEnvConfig } from '@/config/hooks/useEnvConfig';
 
-const DOCKER_ENV = process.env.DOCKER_ENV;
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
+export const API_PREFIX = process.env.API_PREFIX || '/';
+const isDev = process.env.NODE_ENV === 'development';
 
 // 加载配置文件
 function setupConfigModule() {
   return ConfigModule.forRoot({
     load: [useEnvConfig],
-    envFilePath: [DOCKER_ENV ? '.docker.env' : '.env'],
+    envFilePath: ['.env', isDev ? '.env.development' : '.env.production'],
   });
 }
 
@@ -55,3 +57,12 @@ function setupTypeORM() {
 }
 
 export const CONFIG_LIST = [setupConfigModule(), setupTypeORM()];
+
+// 注册app配置
+export function setupAppConfig(app: INestApplication) {
+  //允许跨域请求
+  app.enableCors();
+
+  // 给请求添加prefix
+  app.setGlobalPrefix(API_PREFIX);
+}

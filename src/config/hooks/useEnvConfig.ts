@@ -1,13 +1,28 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:40:25
- * @LastEditTime: 2021-09-11 16:09:09
+ * @LastEditTime: 2021-09-11 17:09:07
  */
-import { env } from '@/config/env';
 
 export const useEnvConfig = () => {
-  const { APP_PORT } = process.env;
-  const combineEnv = { ...env, app: { port: APP_PORT } };
-  console.log('combineEnv：', combineEnv);
-  return combineEnv;
+  const { env } = process;
+
+  return {
+    app: {
+      port: env.HOST_PORT || 3000,
+    },
+    db: {
+      type: env.TYPEORM_CONNECTION,
+      database: env.TYPEORM_DATABASE,
+      host: env.TYPEORM_HOST,
+      port: parseInt(env.TYPEORM_PORT, 10) || 3306,
+      username: env.TYPEORM_USERNAME,
+      password: env.TYPEORM_PASSWORD,
+      synchronize: env.TYPEORM_SYNC,
+    },
+    redis: {
+      host: env.REDIS_HOST,
+      port: parseInt(env.REDIS_PORT) || 6379,
+    },
+  };
 };
