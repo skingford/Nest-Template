@@ -1,9 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 01:10:06
- * @LastEditTime: 2021-09-12 01:12:11
+ * @LastEditTime: 2021-09-12 01:18:32
  */
-import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  HttpStatus,
+  NestInterceptor,
+} from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Logger } from '@/utils/log4js';
@@ -22,8 +27,6 @@ export class TransformInterceptor<T>
 
     return next.handle().pipe(
       map((data) => {
-        console.log('intercept.data:', data);
-
         const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Request original url: ${req.originalUrl}
         Method: ${req.method}
@@ -35,8 +38,8 @@ export class TransformInterceptor<T>
         Logger.access(logFormat);
 
         return {
-          code: 200,
-          message: 'OK',
+          code: HttpStatus.OK,
+          message: 'success',
           data,
         };
       }),

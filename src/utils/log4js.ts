@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:31:48
- * @LastEditTime: 2021-09-12 00:29:56
+ * @LastEditTime: 2021-09-12 01:24:01
  */
 // src/utils/log4js.ts
 import { basename } from 'path';
