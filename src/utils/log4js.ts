@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:31:48
- * @LastEditTime: 2021-09-12 01:24:01
+ * @LastEditTime: 2021-09-13 22:48:24
  */
 // src/utils/log4js.ts
 import { basename } from 'path';
@@ -10,7 +10,7 @@ import Util from 'util';
 import dayjs from 'dayjs'; // 处理时间的工具
 import * as StackTrace from 'stacktrace-js';
 import Chalk from 'chalk';
-import config from '@/config/logs/log4js';
+import config from '@/config/log4js';
 
 // 日志级别
 export enum LoggerLevel {
