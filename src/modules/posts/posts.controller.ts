@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-06 08:39:06
- * @LastEditTime: 2021-09-11 23:11:36
+ * @LastEditTime: 2021-09-14 12:49:38
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -17,7 +17,7 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { CreateDto, UpdateDto } from './dto';
 import { PostsService } from './posts.service';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
@@ -30,6 +30,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
+  @ApiOperation({ summary: '获取帖子', description: '获取帖子详情' })
   async findAll(): Promise<PostEntity[]> {
     return this.postsService.findAll();
   }
