@@ -1,29 +1,17 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:31:48
- * @LastEditTime: 2021-09-16 09:10:00
+ * @LastEditTime: 2021-09-16 16:01:06
  */
 
 import { basename } from 'path';
 import { addLayout, configure, getLogger, LoggingEvent } from 'log4js';
-import Util from 'util';
-import dayjs from 'dayjs'; // 处理时间的工具
+import util from 'util';
 import * as StackTrace from 'stacktrace-js';
 import Chalk from 'chalk';
 import config from '@/config/log4js';
-
-// 日志级别
-export enum LoggerLevel {
-  ALL = 'ALL',
-  MARK = 'MARK',
-  TRACE = 'TRACE',
-  DEBUG = 'DEBUG',
-  INFO = 'INFO',
-  WARN = 'WARN',
-  ERROR = 'ERROR',
-  FATAL = 'FATAL',
-  OFF = 'OFF',
-}
+import { format } from '@/utils/dateUtil';
+import { LoggerLevel } from '@/enums';
 
 // 内容跟踪类
 export class ContextTrace {
@@ -53,7 +41,7 @@ addLayout('Awesome-nest', (logConfig: any) => {
       }
 
       if (typeof value !== 'string') {
-        value = Util.inspect(value, false, 3, true);
+        value = util.inspect(value, false, 3, true);
       }
 
       messageList.push(value);
@@ -63,9 +51,7 @@ addLayout('Awesome-nest', (logConfig: any) => {
     const messageOutput: string = messageList.join(' ');
     const positionOutput: string = position ? ` [${position}]` : '';
     const typeOutput = `[${logConfig.type}] ${logEvent.pid.toString()}   - `;
-    const dateOutput = `${dayjs(logEvent.startTime).format(
-      'YYYY-MM-DD HH:mm:ss',
-    )}`;
+    const dateOutput = `${format(logEvent.startTime)}`;
     const moduleOutput: string = moduleName
       ? `[${moduleName}] `
       : '[LoggerService] ';
