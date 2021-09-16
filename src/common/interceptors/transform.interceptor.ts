@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Logger } from '@/utils/log4js';
+import { Logger } from '@/utils/log/log4js';
 
 export interface Response<T> {
   data: T;

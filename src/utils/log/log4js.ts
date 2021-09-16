@@ -1,9 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:31:48
- * @LastEditTime: 2021-09-13 22:48:24
+ * @LastEditTime: 2021-09-16 09:10:00
  */
-// src/utils/log4js.ts
+
 import { basename } from 'path';
 import { addLayout, configure, getLogger, LoggingEvent } from 'log4js';
 import Util from 'util';

@@ -11,7 +11,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
-import { Logger } from '@/utils/log4js';
+import { Logger } from '@/utils/log/log4js';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {

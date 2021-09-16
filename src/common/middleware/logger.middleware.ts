@@ -1,11 +1,11 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 22:27:21
- * @LastEditTime: 2021-09-12 00:20:19
+ * @LastEditTime: 2021-09-16 09:23:42
  */
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { Logger } from '@/utils/log4js';
+import { Logger } from '@/utils/log/log4js';
 
 // @Injectable()
 // export class LoggerMiddleware implements NestMiddleware {

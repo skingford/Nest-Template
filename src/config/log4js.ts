@@ -1,16 +1,19 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:28:41
- * @LastEditTime: 2021-09-12 00:45:59
+ * @LastEditTime: 2021-09-16 09:15:17
  */
 
 import { resolve } from 'path';
-// __dirname -> dist目录
-// 日志要写入哪个目录
 
-//const baseLogPath = resolve(__dirname, '../../', '../../src/logs');
+/*
+ *  @description: 初始化log4js配置文件目录
+ * __dirname -> dist目录
+ * process.cwd() -> jin-nest
+ * const baseLogPath = resolve(__dirname, '../../', '../../src/logs');
+ */
+
 const baseLogPath = resolve(process.cwd() + '/src/logs');
-console.log('baseLogPath:', baseLogPath, process.cwd());
 
 const log4jsConfig = {
   appenders: {
