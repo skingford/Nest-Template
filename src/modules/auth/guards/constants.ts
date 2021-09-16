@@ -1,7 +1,12 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-09-08 00:17:37
+ * @LastEditTime: 2021-09-16 23:08:57
+ */
 import { SetMetadata } from '@nestjs/common';
 
 export const jwtConstants = {
-  secret: 'secretKey', // 不应该暴露出来
+  secret: 'ywKUGAskcISG2NYq',
   expiresIn: 3, // 3 分钟内过期
 };
 

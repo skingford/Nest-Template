@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 16:22:07
- * @LastEditTime: 2021-09-16 20:53:49
+ * @LastEditTime: 2021-09-16 22:59:23
  */
 import {
   ArgumentsHost,
@@ -24,15 +24,6 @@ export class AllExceptionFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
-
-    // const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    //     Request original url: ${request.originalUrl},
-    //     Method: ${request.method},
-    //     IP: ${request.ip},
-    //     Status code: ${status},
-    //     timestamp: ${new Date().toISOString()},
-    //     Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    //     `;
 
     const logFormat = logResponse({
       req: request,

@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 23:31:48
- * @LastEditTime: 2021-09-16 16:01:06
+ * @LastEditTime: 2021-09-16 23:11:58
  */
 
 import { basename } from 'path';
@@ -11,7 +11,7 @@ import * as StackTrace from 'stacktrace-js';
 import Chalk from 'chalk';
 import config from '@/config/log4js';
 import { format } from '@/utils/dateUtil';
-import { LoggerLevel } from '@/enums';
+import { LoggerLevel } from '@/common/enums';
 
 // 内容跟踪类
 export class ContextTrace {
