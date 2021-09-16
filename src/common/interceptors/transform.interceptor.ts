@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 01:10:06
- * @LastEditTime: 2021-09-12 01:18:32
+ * @LastEditTime: 2021-09-16 20:54:01
  */
 import {
   CallHandler,
@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Logger } from '@/utils/log/log4js';
+import { Logger, logResponse } from '@/utils/log';
 
 export interface Response<T> {
   data: T;
@@ -27,13 +27,7 @@ export class TransformInterceptor<T>
 
     return next.handle().pipe(
       map((data) => {
-        const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        Request original url: ${req.originalUrl}
-        Method: ${req.method}
-        IP: ${req.ip}
-        User: ${JSON.stringify(req.user)}
-        Response data:\n ${JSON.stringify(data)}
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`;
+        const logFormat = logResponse({ req, res: data });
         Logger.info(logFormat);
         Logger.access(logFormat);
 

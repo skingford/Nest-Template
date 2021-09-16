@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-05 22:45:29
- * @LastEditTime: 2021-09-12 01:32:46
+ * @LastEditTime: 2021-09-16 20:53:42
  */
 
 import {
@@ -11,7 +11,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { Logger } from '@/utils/log/log4js';
+import { Logger, logResponse } from '@/utils/log';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -21,14 +21,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    Request original url: ${request.originalUrl},
-    Method: ${request.method},
-    IP: ${request.ip},
-    Status code: ${status},
-    timestamp: ${new Date().toISOString()},
-    Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    `;
+    const logFormat = logResponse({
+      req: request,
+      res: exception.toString(),
+      status,
+    });
 
     Logger.error(logFormat);
 

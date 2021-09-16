@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-11 16:22:07
- * @LastEditTime: 2021-09-12 01:30:37
+ * @LastEditTime: 2021-09-16 20:53:49
  */
 import {
   ArgumentsHost,
@@ -11,7 +11,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
-import { Logger } from '@/utils/log/log4js';
+import { Logger, logResponse } from '@/utils/log';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -25,14 +25,20 @@ export class AllExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        Request original url: ${request.originalUrl},
-        Method: ${request.method},
-        IP: ${request.ip},
-        Status code: ${status},
-        timestamp: ${new Date().toISOString()},
-        Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        `;
+    // const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //     Request original url: ${request.originalUrl},
+    //     Method: ${request.method},
+    //     IP: ${request.ip},
+    //     Status code: ${status},
+    //     timestamp: ${new Date().toISOString()},
+    //     Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //     `;
+
+    const logFormat = logResponse({
+      req: request,
+      res: exception.toString(),
+      status,
+    });
 
     Logger.error(logFormat);
 

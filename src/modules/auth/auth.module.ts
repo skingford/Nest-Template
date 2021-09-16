@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-11 23:11:46
+ * @LastEditTime: 2021-09-16 17:01:47
  */
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
