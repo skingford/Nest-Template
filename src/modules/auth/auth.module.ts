@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-16 17:01:47
+ * @LastEditTime: 2021-09-17 00:57:35
  */
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
@@ -28,6 +28,7 @@ import { LogModule } from '../log/log.module';
   ],
   controllers: [AuthController],
   providers: [
+    AuthService,
     AuthService,
     LocalStrategy,
     JwtStrategy,

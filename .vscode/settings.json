@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["nestjs", "TYPEORM", "websockets", "appenders", "appender"]
+  "cSpell.words": [
+    "appender",
+    "appenders",
+    "nestjs",
+    "TYPEORM",
+    "unionid",
+    "websockets",
+    "wechat"
+  ]
 }
