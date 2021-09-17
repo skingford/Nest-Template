@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 00:34:26
- * @LastEditTime: 2021-09-17 00:56:17
+ * @LastEditTime: 2021-09-17 12:53:01
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -10,15 +10,18 @@ https://docs.nestjs.com/controllers#controllers
 import { Controller, Post, Body } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { SkipJwtAuth } from '@/modules/auth/guards/constants';
-import { LoginDto } from './dto/LoginDto';
+import { AuthService } from './auth.service';
+import { LoginMiniDto } from './dto/LoginMiniDto';
 
 @Controller('wechat-mini')
 @SkipJwtAuth()
 @ApiTags('wechat-mini')
 export class AuthController {
-  @Post('/auth')
+  constructor(private readonly authService: AuthService) {}
+
+  @Post('/login')
   @ApiOperation({ summary: '微信授权', description: '微信授权' })
-  async login(@Body() login: LoginDto) {
-    return login;
+  async login(@Body() login: LoginMiniDto) {
+    return this.authService.login(login.code);
   }
 }

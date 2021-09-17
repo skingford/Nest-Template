@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:40:25
- * @LastEditTime: 2021-09-17 00:57:16
+ * @LastEditTime: 2021-09-17 12:54:38
  */
 
 export const useEnvConfig = () => {
@@ -24,7 +24,7 @@ export const useEnvConfig = () => {
       host: env.REDIS_HOST,
       port: parseInt(env.REDIS_PORT) || 6379,
     },
-    wechat_mini: {
+    wechatMini: {
       appid: env.WECHAT_MINI_APPID,
       secret: env.WECHAT_MINI_SECRET,
     },

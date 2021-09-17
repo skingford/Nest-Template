@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 00:44:04
- * @LastEditTime: 2021-09-17 00:49:43
+ * @LastEditTime: 2021-09-17 12:41:06
  */
 
 /**
@@ -11,12 +11,12 @@
  *  grant_type			授权类型，此处只需填写 authorization_code
  */
 
-interface AccessUrl {
+interface Seasoner {
   appid: string;
   code: string;
   secret: string;
 }
 
-export function getAccessUrl({ appid, code, secret }: AccessUrl) {
+export function getSessionUrl({ appid, code, secret }: Seasoner) {
   return `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}js_code=${code}&grant_type=authorization_code`;
 }
