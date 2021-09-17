@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 00:44:04
- * @LastEditTime: 2021-09-17 12:41:06
+ * @LastEditTime: 2021-09-18 00:09:34
  */
 
 /**
@@ -16,7 +16,7 @@ interface Seasoner {
   code: string;
   secret: string;
 }
-
+//https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
 export function getSessionUrl({ appid, code, secret }: Seasoner) {
-  return `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}js_code=${code}&grant_type=authorization_code`;
+  return `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=authorization_code`;
 }

@@ -1,11 +1,11 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 01:10:33
- * @LastEditTime: 2021-09-17 01:14:57
+ * @LastEditTime: 2021-09-18 00:26:17
  */
 
 import { EntityRepository, Repository } from 'typeorm';
-import { wechatMiniUser } from '@/modules/wechat/mini/entities/user.entity';
+import { WechatMiniUser } from '@/modules/wechat/mini/entities/user.entity';
 
-@EntityRepository(wechatMiniUser)
-export class UserRepository extends Repository<wechatMiniUser> {}
+@EntityRepository(WechatMiniUser)
+export class MiniUserRepository extends Repository<WechatMiniUser> {}
