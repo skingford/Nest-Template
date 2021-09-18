@@ -1,8 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:40:25
- * @LastEditTime: 2021-09-17 12:54:38
+ * @LastEditTime: 2021-09-18 16:03:10
  */
+import { WECHAT_MINI_KEY } from '../constant';
 
 export const useEnvConfig = () => {
   const { env } = process;
@@ -24,7 +25,7 @@ export const useEnvConfig = () => {
       host: env.REDIS_HOST,
       port: parseInt(env.REDIS_PORT) || 6379,
     },
-    wechatMini: {
+    [WECHAT_MINI_KEY]: {
       appid: env.WECHAT_MINI_APPID,
       secret: env.WECHAT_MINI_SECRET,
     },

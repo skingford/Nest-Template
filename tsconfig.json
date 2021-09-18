@@ -21,7 +21,8 @@
     "noUnusedParameters": true /*检查函数中是否有未使用的变量*/,
     "noImplicitReturns": true /*检查函数否有返回值*/,
     "paths": {
-      "@/*": ["src/*"] /*定义别名*/
+      "@/*": ["src/*"] /*定义别名*/,
+      "#/*": ["types/*"]
     },
     "typeRoots": [/*类型声明文件*/ "./types", "./node_modules/@types"]
   },

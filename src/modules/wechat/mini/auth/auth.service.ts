@@ -1,16 +1,17 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-09-18 00:42:18
+ * @LastEditTime: 2021-09-18 16:13:10
  */
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { getSessionUrl } from '@/modules/wechat/mini/utils';
+import { getAuthUrl } from '@/modules/wechat/mini/utils';
 import { WechatMiniUser } from '@/modules/wechat/mini/entities/user.entity';
 import { MiniUserRepository } from '@/modules/wechat/mini/repositories/user.repository';
-import { CreateDto } from './dto';
-import { request } from '@/utils/http';
+import { CreateMiniUserDto } from './dto';
+import { defHttp } from '@/utils/http';
 import { Logger } from '@/utils/log';
+import { WECHAT_MINI_KEY } from '@/config';
 
 @Injectable()
 export class AuthService {
@@ -19,40 +20,43 @@ export class AuthService {
     private config: ConfigService,
   ) {}
 
-  async create(createDto: CreateDto): Promise<WechatMiniUser> {
+  async create(createDto: CreateMiniUserDto): Promise<WechatMiniUser> {
     const { openid, unionid, session_key } = createDto;
     const user = new WechatMiniUser(openid, session_key, unionid);
     return this.userRepository.save(user);
   }
 
-  async login(code: string): Promise<any> {
-    const config = this.config.get('wechatMini');
-    const { appid, secret } = config;
+  async login(code: string): Promise<WechatMiniUser> {
+    // 1. 获取微信授权信息
+    const wxSession = await this.getWxSession(code);
 
-    // 1. 通过code获取openid
-    const authUrl = getSessionUrl({ appid, secret, code });
-    const wxSession = await request({
-      url: authUrl,
-      method: 'get',
+    // 2. 通过openid判断用户是否注册，已注册直接返回用户信息，否则注册用户
+    const { openid } = wxSession;
+    const user = await this.userRepository.findOne({
+      openid,
     });
 
-    console.log('wxSession:', wxSession);
+    // 3. 用户已注册，直接返回用户信息
+    if (user) {
+      return user;
+    }
+    // 4. 用户未注册，创建用户
+    return this.create(wxSession);
+  }
 
+  // 获取微信授权信息
+  async getWxSession(code: string): Promise<CreateMiniUserDto> {
+    // 获取配置appid, secret信息
+    const config = this.config.get(WECHAT_MINI_KEY);
+    const { appid, secret } = config;
+    // 发起微信授权请求
+    const url = getAuthUrl({ appid, secret, code });
+    const wxSession = await defHttp.get({ url });
     if (wxSession.errcode) {
       const msg = `${wxSession.errcode}:${wxSession.errmsg}`;
       Logger.error(msg);
       throw new ForbiddenException(msg);
     }
-
-    // 2. 通过openid判断用户是否存在，存在直接返回用户信息，不存在则创建用户
-    const user = await this.userRepository.findOne({
-      openid: wxSession.openid,
-    });
-
-    if (user) {
-      return user;
-    }
-
-    return this.create(wxSession);
+    return wxSession;
   }
 }
