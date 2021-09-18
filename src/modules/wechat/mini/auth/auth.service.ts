@@ -1,14 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-09-18 16:13:10
+ * @LastEditTime: 2021-09-18 17:45:34
  */
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { getAuthUrl } from '@/modules/wechat/mini/utils';
 import { WechatMiniUser } from '@/modules/wechat/mini/entities/user.entity';
 import { MiniUserRepository } from '@/modules/wechat/mini/repositories/user.repository';
-import { CreateMiniUserDto } from './dto';
+import { CreateMiniUserDto, UpdateMiniUserDto } from './dto';
 import { defHttp } from '@/utils/http';
 import { Logger } from '@/utils/log';
 import { WECHAT_MINI_KEY } from '@/config';
@@ -20,12 +20,34 @@ export class AuthService {
     private config: ConfigService,
   ) {}
 
+  async findAll(): Promise<WechatMiniUser[]> {
+    return this.userRepository.find();
+  }
+
+  async findOne(id: string): Promise<WechatMiniUser> {
+    return this.userRepository.findOneOrFail(id);
+  }
+
+  async update(id: string, updateDto: UpdateMiniUserDto): Promise<any> {
+    const { nickname, phone } = updateDto;
+    return this.userRepository.update(id, {
+      nickname,
+      phone,
+    });
+  }
+
+  async remove(id: string): Promise<any> {
+    return this.userRepository.delete(id);
+  }
+
+  // 创建微信用户
   async create(createDto: CreateMiniUserDto): Promise<WechatMiniUser> {
     const { openid, unionid, session_key } = createDto;
     const user = new WechatMiniUser(openid, session_key, unionid);
     return this.userRepository.save(user);
   }
 
+  // 微信用户登录
   async login(code: string): Promise<WechatMiniUser> {
     // 1. 获取微信授权信息
     const wxSession = await this.getWxSession(code);
