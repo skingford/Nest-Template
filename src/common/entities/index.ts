@@ -1,37 +1,46 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 22:14:36
- * @LastEditTime: 2021-09-18 17:17:14
+ * @LastEditTime: 2021-09-19 00:11:32
  */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
-  Column,
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 @Entity('BaseEntity')
 export class BaseEntity {
-  @ApiProperty({ description: 'uuid' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiPropertyOptional({ description: '创建时间' })
   @CreateDateColumn({
+    type: 'timestamp',
+    nullable: false,
+    name: 'created_at',
     comment: '创建时间',
   })
   createdAt: Date;
 
-  @ApiPropertyOptional({ description: '更新时间' })
-  @UpdateDateColumn({ update: true, comment: '更新时间' })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    nullable: false,
+    name: 'updated_at',
+    comment: '更新时间',
+  })
   updatedAt?: Date;
 
-  @ApiPropertyOptional({ description: '删除时间' })
   @DeleteDateColumn({
-    comment: '删除时间',
+    type: 'timestamp',
+    nullable: false,
+    name: 'deleted_at',
+    select: false,
+    comment: '软删除时间',
   })
+  @Exclude()
   deletedAt?: Date;
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 00:34:26
- * @LastEditTime: 2021-09-18 17:35:38
+ * @LastEditTime: 2021-09-18 23:52:09
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -35,15 +35,15 @@ export class AuthController {
   }
 
   @Get('/user')
-  @ApiOperation({ summary: '获取用户信息', description: '获取用户信息' })
+  @ApiOperation({ summary: '获取微信用户信息', description: '获取用户信息' })
   async findAll(): Promise<WechatMiniUser[]> {
     return this.authService.findAll();
   }
 
   @Get('/user/:id')
   @ApiOperation({
-    summary: '通过id获取用户信息',
-    description: '通过id获取用户信息',
+    summary: '微信用户信息',
+    description: '通过id获取微信用户信息',
   })
   async findOne(@Param('id') id: string): Promise<WechatMiniUser> {
     return this.authService.findOne(id);
@@ -51,8 +51,8 @@ export class AuthController {
 
   @Put('/user/:id')
   @ApiOperation({
-    summary: '更新用户信息',
-    description: '更新用户信息',
+    summary: '更新微信用户信息',
+    description: '更新微信用户信息',
   })
   async update(
     @Param('id') id: string,
@@ -63,8 +63,8 @@ export class AuthController {
 
   @Delete('/user/:id')
   @ApiOperation({
-    summary: '删除用户信息',
-    description: '删除用户信息',
+    summary: '删除微信用户信息',
+    description: '删除微信用户信息',
   })
   async remove(@Param('id') id: string): Promise<any> {
     return this.authService.remove(id);

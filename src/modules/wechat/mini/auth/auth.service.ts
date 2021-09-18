@@ -1,9 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-09-18 17:45:34
+ * @LastEditTime: 2021-09-19 00:22:14
  */
-import { Injectable, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { getAuthUrl } from '@/modules/wechat/mini/utils';
 import { WechatMiniUser } from '@/modules/wechat/mini/entities/user.entity';
@@ -25,10 +30,14 @@ export class AuthService {
   }
 
   async findOne(id: string): Promise<WechatMiniUser> {
-    return this.userRepository.findOneOrFail(id);
+    return this.userRepository.findOne(id);
   }
 
   async update(id: string, updateDto: UpdateMiniUserDto): Promise<any> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new HttpException(`${id}用户不存在`, HttpStatus.OK);
+    }
     const { nickname, phone } = updateDto;
     return this.userRepository.update(id, {
       nickname,
@@ -36,8 +45,17 @@ export class AuthService {
     });
   }
 
-  async remove(id: string): Promise<any> {
-    return this.userRepository.delete(id);
+  async remove(id: string): Promise<string> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new HttpException(`${id}用户不存在`, HttpStatus.OK);
+    }
+
+    const {
+      raw: { affectedRows },
+    } = await this.userRepository.softDelete(id);
+
+    return affectedRows ? '删除成功' : '删除失败';
   }
 
   // 创建微信用户
