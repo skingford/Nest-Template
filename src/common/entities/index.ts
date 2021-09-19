@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 22:14:36
- * @LastEditTime: 2021-09-19 00:11:32
+ * @LastEditTime: 2021-09-19 10:19:25
  */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
@@ -21,7 +21,7 @@ export class BaseEntity {
   @CreateDateColumn({
     type: 'timestamp',
     nullable: false,
-    name: 'created_at',
+    name: 'createdAt',
     comment: '创建时间',
   })
   createdAt: Date;
@@ -29,7 +29,7 @@ export class BaseEntity {
   @UpdateDateColumn({
     type: 'timestamp',
     nullable: false,
-    name: 'updated_at',
+    name: 'updatedAt',
     comment: '更新时间',
   })
   updatedAt?: Date;
@@ -37,7 +37,7 @@ export class BaseEntity {
   @DeleteDateColumn({
     type: 'timestamp',
     nullable: false,
-    name: 'deleted_at',
+    name: 'deletedAt',
     select: false,
     comment: '软删除时间',
   })

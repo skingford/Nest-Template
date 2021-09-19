@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-09-19 00:22:14
+ * @LastEditTime: 2021-09-19 10:17:51
  */
 import {
   Injectable,
@@ -19,7 +19,7 @@ import { Logger } from '@/utils/log';
 import { WECHAT_MINI_KEY } from '@/config';
 
 @Injectable()
-export class AuthService {
+export class UserService {
   constructor(
     private userRepository: MiniUserRepository,
     private config: ConfigService,
@@ -94,8 +94,8 @@ export class AuthService {
     const wxSession = await defHttp.get({ url });
     if (wxSession.errcode) {
       const msg = `${wxSession.errcode}:${wxSession.errmsg}`;
-      Logger.error(msg);
-      throw new ForbiddenException(msg);
+      Logger.error('获取微信openId失败：' + msg);
+      throw new HttpException(msg, HttpStatus.OK);
     }
     return wxSession;
   }
