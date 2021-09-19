@@ -26,6 +26,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nartc/automapper": "^7.0.4",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^1.0.1",
     "@nestjs/core": "^8.0.0",
@@ -44,6 +45,7 @@
     "log4js": "^6.3.0",
     "mockjs": "^1.1.0",
     "mysql2": "^2.3.0",
+    "nestjsx-automapper": "^3.1.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

@@ -1,13 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-11 17:48:58
+ * @LastEditTime: 2021-09-20 00:06:26
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { useEnvConfig } from '@/config/hooks/useEnvConfig';
 import { API_PREFIX } from '@/main';
+import { AutomapperModule } from 'nestjsx-automapper';
 
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
 
@@ -63,6 +64,11 @@ function setupTypeORM() {
   });
 }
 
+// 注册mapper
+export function setupMapper() {
+  return AutomapperModule.withMapper();
+}
+
 // 注册app全局配置
 export function setupAppConfig(app: INestApplication) {
   //允许跨域请求
@@ -73,4 +79,4 @@ export function setupAppConfig(app: INestApplication) {
 }
 
 // 注册全局配置列表
-export const CONFIG_LIST = [setupConfigModule(), setupTypeORM()];
+export const CONFIG_LIST = [setupConfigModule(), setupTypeORM(), setupMapper()];
