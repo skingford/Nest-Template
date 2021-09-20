@@ -2,12 +2,12 @@ import { Logger } from './../../utils/log/log4js';
 /*
  * @Author: kingford
  * @Date: 2021-09-08 23:16:36
- * @LastEditTime: 2021-09-20 00:59:08
+ * @LastEditTime: 2021-09-20 09:21:20
  */
 import { Injectable } from '@nestjs/common';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
 import { PostsRepository } from '@/modules/posts/repositories/postRepository';
-import { CreateDto, UpdateDto, GetPostsDto } from './dto';
+import { CreateDto, UpdateDto, GetPostsDto, GetListPostsDto } from './dto';
 import { AutoMapper } from '@nartc/automapper';
 import { InjectMapper } from 'nestjsx-automapper';
 
@@ -26,8 +26,9 @@ export class PostsService {
     return this.postsRepository.save(posts);
   }
 
-  async findAll(): Promise<PostEntity[]> {
-    return this.postsRepository.find();
+  async findAll(): Promise<GetListPostsDto[]> {
+    const posts = await this.postsRepository.find();
+    return this.mapper.mapArray(posts, GetListPostsDto);
   }
 
   async findOne(id: string): Promise<any> {
