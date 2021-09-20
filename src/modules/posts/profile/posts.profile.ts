@@ -1,14 +1,13 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-20 00:16:33
- * @LastEditTime: 2021-09-20 13:12:01
+ * @LastEditTime: 2021-09-20 13:15:22
  */
 import {
   ProfileBase,
   Profile,
   AutoMapper,
   InjectMapper,
-  ignore,
 } from 'nestjsx-automapper';
 import { GetPostsDto, GetListPostsDto } from '../dto';
 import { PostEntity } from '../entities/posts.entity';

@@ -1,14 +1,18 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-20 00:06:26
+ * @LastEditTime: 2021-09-20 13:31:39
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { useEnvConfig } from '@/config/hooks/useEnvConfig';
 import { API_PREFIX } from '@/main';
-import { AutomapperModule } from 'nestjsx-automapper';
+import {
+  AutomapperModule,
+  PascalCaseNamingConvention,
+  CamelCaseNamingConvention,
+} from 'nestjsx-automapper';
 
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
 
@@ -66,7 +70,13 @@ function setupTypeORM() {
 
 // 注册mapper
 export function setupMapper() {
-  return AutomapperModule.withMapper();
+  return AutomapperModule.withMapper({
+    // sourceNamingConvention: PascalCaseNamingConvention,
+    destinationNamingConvention: CamelCaseNamingConvention,
+    useUndefined: true,
+    skipUnmappedAssertion: true,
+    throwError: true,
+  });
 }
 
 // 注册app全局配置

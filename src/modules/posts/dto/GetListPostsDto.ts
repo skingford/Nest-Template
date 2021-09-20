@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-19 23:19:20
- * @LastEditTime: 2021-09-20 13:12:30
+ * @LastEditTime: 2021-09-20 13:29:35
  */
 /*
  * @Author: kingford
@@ -17,6 +17,6 @@ export class GetListPostsDto {
   @AutoMap()
   title: string;
 
-  @AutoMap()
+  // @AutoMap()
   content: string;
 }
