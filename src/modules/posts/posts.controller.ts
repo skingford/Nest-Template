@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-06 08:39:06
- * @LastEditTime: 2021-09-19 23:38:19
+ * @LastEditTime: 2021-09-20 13:10:43
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -15,13 +15,12 @@ import {
   Delete,
   Param,
   Body,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiDefaultResponse } from '@nestjs/swagger';
 import { PostsService } from './posts.service';
 import { PostEntity } from '@/modules/posts/entities/posts.entity';
 import { SkipJwtAuth } from '@/modules/auth/guards/constants';
-import { CreateDto, UpdateDto, GetPostsDto } from './dto';
+import { CreateDto, UpdateDto, GetPostsDto, GetListPostsDto } from './dto';
 
 @Controller('posts')
 @SkipJwtAuth()
@@ -31,7 +30,7 @@ export class PostsController {
 
   @ApiOperation({ summary: '获取帖子', description: '获取帖子列表' })
   @Get()
-  async findAll(): Promise<PostEntity[]> {
+  async findAll(): Promise<GetListPostsDto[]> {
     return this.postsService.findAll();
   }
 

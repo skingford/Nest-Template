@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-20 00:16:33
- * @LastEditTime: 2021-09-20 09:30:42
+ * @LastEditTime: 2021-09-20 13:12:01
  */
 import {
   ProfileBase,
@@ -18,8 +18,6 @@ export class PostsProfile extends ProfileBase {
   constructor(@InjectMapper() mapper: AutoMapper) {
     super();
     mapper.createMap(PostEntity, GetPostsDto);
-    mapper
-      .createMap(PostEntity, GetListPostsDto)
-      .forMember((dest) => dest.title, ignore());
+    mapper.createMap(PostEntity, GetListPostsDto);
   }
 }
