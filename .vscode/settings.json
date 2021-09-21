@@ -8,6 +8,7 @@
     "nartc",
     "nestjs",
     "nestjsx",
+    "tinyint",
     "TYPEORM",
     "unionid",
     "websockets",
