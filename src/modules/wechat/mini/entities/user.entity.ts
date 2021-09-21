@@ -1,25 +1,26 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 01:00:48
- * @LastEditTime: 2021-09-18 17:19:18
+ * @LastEditTime: 2021-09-21 10:59:47
  */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '@/common/entities';
+import { User } from '@/modules/user/entities/user.entity';
 
-@Entity()
+@Entity('WechatMiniUser')
 export class WechatMiniUser extends BaseEntity {
   @ApiProperty({ description: '用户唯一标识' })
-  @Column({ comment: '用户唯一标识' })
+  @Column({ name: 'openId', comment: '用户唯一标识' })
   openid: string;
 
   @ApiPropertyOptional({ description: '用户在开放平台的唯一标识符' })
-  @Column({ comment: '用户在开放平台的唯一标识符' })
+  @Column({ name: 'unionId', comment: '用户在开放平台的唯一标识符' })
   unionid: string;
 
   @ApiProperty({ description: '会话密钥' })
-  @Column({ comment: '会话密钥' })
-  sessionKey: string;
+  @Column({ name: 'sessionKey', comment: '会话密钥' })
+  session_key: string;
 
   @ApiPropertyOptional({ description: '用户昵称' })
   @Column({ length: 20, comment: '用户昵称', nullable: true })
@@ -29,10 +30,13 @@ export class WechatMiniUser extends BaseEntity {
   @Column({ length: 20, comment: '用户手机号', nullable: true })
   phone?: string;
 
-  constructor(openid?: string, sessionKey?: string, unionid?: string) {
+  @ManyToOne(() => User, (user) => user.wechatMiniUsers)
+  user: User;
+
+  constructor(openid: string, sessionKey: string, unionid: string) {
     super();
     this.openid = openid;
     this.unionid = unionid;
-    this.sessionKey = sessionKey;
+    this.session_key = sessionKey;
   }
 }

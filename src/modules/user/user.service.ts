@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-18 23:30:17
+ * @LastEditTime: 2021-09-21 10:46:56
  */
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -20,7 +20,7 @@ export class UserService {
     user.username = username;
     user.password = password;
     user.email = email;
-    user.is_admin = 1;
+    user.role = 1;
 
     return this.userRepository.save(user);
   }
@@ -42,13 +42,11 @@ export class UserService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     const { username, password, email } = updateUserDto;
 
-    return this.userRepository.update({ id }, { username, password, email });
+    return this.userRepository.update(id, { username, password, email });
   }
 
   async remove(id: number) {
-    return this.userRepository.delete({
-      id,
-    });
+    return this.userRepository.softDelete(id);
   }
 
   async checkAdmin(id: number) {

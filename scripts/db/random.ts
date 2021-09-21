@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 08:46:57
- * @LastEditTime: 2021-09-10 00:48:39
+ * @LastEditTime: 2021-09-21 10:46:41
  */
 import { User } from '../../src/modules/user/entities/user.entity';
 import { Random } from 'mockjs';
@@ -11,13 +11,13 @@ export const getInitUsers = () => {
   admin.email = 'admin@admin.com';
   admin.username = 'admin';
   admin.password = 'admin';
-  admin.is_admin = 1;
+  admin.role = 1;
 
   const user = new User();
   user.email = 'user@admin.com';
   user.username = 'admin';
   user.password = '123456';
-  user.is_admin = 0;
+  user.role = 0;
 
   return [admin, user];
 };
@@ -28,7 +28,7 @@ export const getRandomUser = (): User => {
   user.username = Random.cname();
   user.email = Random.email();
   user.password = '123456';
-  user.is_admin = Random.natural(0, 1);
+  user.role = Random.natural(0, 1);
 
   return user;
 };
