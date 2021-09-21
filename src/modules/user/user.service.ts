@@ -1,13 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:17:37
- * @LastEditTime: 2021-09-21 10:46:56
+ * @LastEditTime: 2021-09-21 17:56:24
  */
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserRepository } from '@/modules/user/repository/UserRepository';
+import { RoleEnum } from '@/common/enums';
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,7 @@ export class UserService {
     user.username = username;
     user.password = password;
     user.email = email;
-    user.role = 1;
+    user.role = RoleEnum.User;
 
     return this.userRepository.save(user);
   }
