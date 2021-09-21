@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-20 13:31:39
+ * @LastEditTime: 2021-09-21 11:48:38
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
@@ -10,7 +10,6 @@ import { useEnvConfig } from '@/config/hooks/useEnvConfig';
 import { API_PREFIX } from '@/main';
 import {
   AutomapperModule,
-  PascalCaseNamingConvention,
   CamelCaseNamingConvention,
 } from 'nestjsx-automapper';
 
@@ -41,6 +40,8 @@ function setupTypeORM() {
     useFactory: async (config: ConfigService) => {
       const { type, host, port, username, password, database, synchronize } =
         config.get('db');
+
+      console.log('db.config:', config.get('db'));
 
       return {
         type,
