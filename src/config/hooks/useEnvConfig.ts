@@ -1,19 +1,19 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:40:25
- * @LastEditTime: 2021-09-21 11:31:15
+ * @LastEditTime: 2021-09-22 09:13:02
  */
-import { WECHAT_MINI_KEY } from '../constant';
+import { APP_KEY, REDIS_KEY, WECHAT_MINI_KEY, DB_KEY } from '../constant';
 
 export const useEnvConfig = () => {
   // env 读取的是环境变量多为字符串
   const { env } = process;
 
   return {
-    app: {
+    [APP_KEY]: {
       port: env.HOST_PORT || 3000,
     },
-    db: {
+    [DB_KEY]: {
       type: env.TYPEORM_CONNECTION,
       database: env.TYPEORM_DATABASE,
       host: env.TYPEORM_HOST,
@@ -22,7 +22,7 @@ export const useEnvConfig = () => {
       password: env.TYPEORM_PASSWORD,
       synchronize: env.TYPEORM_SYNC === 'true' ? true : false,
     },
-    redis: {
+    [REDIS_KEY]: {
       host: env.REDIS_HOST,
       port: parseInt(env.REDIS_PORT) || 6379,
     },

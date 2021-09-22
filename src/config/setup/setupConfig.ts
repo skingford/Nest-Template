@@ -1,17 +1,18 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-21 11:48:38
+ * @LastEditTime: 2021-09-22 09:34:03
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { useEnvConfig } from '@/config/hooks/useEnvConfig';
-import { API_PREFIX } from '@/main';
 import {
   AutomapperModule,
   CamelCaseNamingConvention,
 } from 'nestjsx-automapper';
+
+import { API_PREFIX } from '@/main';
+import { useEnvConfig, DB_KEY } from '@/config';
 
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
 
@@ -39,9 +40,9 @@ function setupTypeORM() {
     inject: [ConfigService],
     useFactory: async (config: ConfigService) => {
       const { type, host, port, username, password, database, synchronize } =
-        config.get('db');
+        config.get(DB_KEY);
 
-      console.log('db.config:', config.get('db'));
+      console.log('DB_KEY.config:', config.get(DB_KEY));
 
       return {
         type,
