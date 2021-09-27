@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-22 09:34:03
+ * @LastEditTime: 2021-09-27 20:27:02
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
@@ -13,6 +13,7 @@ import {
 
 import { API_PREFIX } from '@/main';
 import { useEnvConfig, DB_KEY } from '@/config';
+import configuration from '../configuration';
 
 const ENTITY_DIR = __dirname + '/../../**/*.entity{.ts,.js}';
 
@@ -28,7 +29,7 @@ const loadEnvFile = () => {
 // 加载配置
 function setupConfigModule() {
   return ConfigModule.forRoot({
-    load: [useEnvConfig],
+    load: [configuration],
     envFilePath: ['.env', loadEnvFile()],
   });
 }
@@ -40,9 +41,9 @@ function setupTypeORM() {
     inject: [ConfigService],
     useFactory: async (config: ConfigService) => {
       const { type, host, port, username, password, database, synchronize } =
-        config.get(DB_KEY);
+        config.get('database');
 
-      console.log('DB_KEY.config:', config.get(DB_KEY));
+      console.log('DB_KEY.config:', config.get('database'));
 
       return {
         type,
