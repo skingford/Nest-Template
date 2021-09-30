@@ -5,6 +5,12 @@
   "username": "root",
   "password": "123456",
   "database": "jin-nest-dev",
+  "synchronize": false,
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "synchronize": false
+  "migrations": ["dist/migration/**/*{.ts,.js}"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
 }
