@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-22 08:54:35
- * @LastEditTime: 2021-09-30 20:21:05
+ * @LastEditTime: 2021-09-30 20:30:27
  */
 
 import { Module } from '@nestjs/common';
@@ -13,15 +13,7 @@ import { PostsModule } from '@/modules/posts/posts.module';
 import { UserModule } from '@/modules/user/user.module';
 import { AuthModule } from '@/modules/auth/auth.module';
 import { WeChatMiniModule } from '@/modules/wechat/mini/wechat-mini.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { getConnectionOptions, Connection } from 'typeorm';
-
-TypeOrmModule.forRootAsync({
-  useFactory: async () =>
-    Object.assign(await getConnectionOptions(), {
-      autoLoadEntities: true,
-    }),
-});
+import { Connection } from 'typeorm';
 
 const MODULE_LIST = [
   SharedModule,
@@ -32,7 +24,7 @@ const MODULE_LIST = [
 ];
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), ...CONFIG_LIST, ...MODULE_LIST],
+  imports: [...CONFIG_LIST, ...MODULE_LIST],
   controllers: [AppController],
   providers: [AppService],
 })
