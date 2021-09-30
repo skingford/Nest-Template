@@ -2,10 +2,10 @@ import { Logger } from './../../utils/log/log4js';
 /*
  * @Author: kingford
  * @Date: 2021-09-08 23:16:36
- * @LastEditTime: 2021-09-20 09:21:20
+ * @LastEditTime: 2021-09-30 19:23:09
  */
 import { Injectable } from '@nestjs/common';
-import { PostEntity } from '@/modules/posts/entities/posts.entity';
+import { PostEntity } from '@/modules/posts/entities/post.entity';
 import { PostsRepository } from '@/modules/posts/repositories/postRepository';
 import { CreateDto, UpdateDto, GetPostsDto, GetListPostsDto } from './dto';
 import { AutoMapper } from '@nartc/automapper';

@@ -10,7 +10,7 @@ import {
   InjectMapper,
 } from 'nestjsx-automapper';
 import { GetPostsDto, GetListPostsDto } from '../dto';
-import { PostEntity } from '../entities/posts.entity';
+import { PostEntity } from '../entities/post.entity';
 
 @Profile()
 export class PostsProfile extends ProfileBase {

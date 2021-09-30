@@ -18,7 +18,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiDefaultResponse } from '@nestjs/swagger';
 import { PostsService } from './posts.service';
-import { PostEntity } from '@/modules/posts/entities/posts.entity';
+import { PostEntity } from '@/modules/posts/entities/post.entity';
 import { SkipJwtAuth } from '@/modules/auth/guards/constants';
 import { CreateDto, UpdateDto, GetPostsDto, GetListPostsDto } from './dto';
 

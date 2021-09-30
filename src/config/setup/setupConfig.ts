@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-08 00:47:41
- * @LastEditTime: 2021-09-27 20:27:02
+ * @LastEditTime: 2021-09-30 19:40:57
  */
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { INestApplication } from '@nestjs/common';
@@ -66,6 +66,11 @@ function setupTypeORM() {
           pollPingInterval: 60, // 每隔60秒连接
           pollTimeout: 60, // 连接有效60秒
         },
+        cli: {
+          entitiesDir: 'src/modules',
+          migrationsDir: 'src/migration',
+          subscribersDir: 'src/subscriber',
+        },
       };
     },
   });
@@ -92,4 +97,4 @@ export function setupAppConfig(app: INestApplication) {
 }
 
 // 注册全局配置列表
-export const CONFIG_LIST = [setupConfigModule(), setupTypeORM(), setupMapper()];
+export const CONFIG_LIST = [setupConfigModule(), setupMapper()];

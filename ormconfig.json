@@ -5,20 +5,6 @@
   "username": "root",
   "password": "123456",
   "database": "jin-nest-dev",
-  "synchronize": false,
-  "logging": true,
-  "timezone": "+08:00",
-  "cache": {
-    "duration": 60000
-  },
-  "extra": {
-    "poolMax": 32,
-    "poolMin": 16,
-    "queueTimeout": 60000,
-    "pollPingInterval": 60,
-    "pollTimeout": 60
-  },
-  "entities": ["src/modules/**/*.ts"],
-  "migrations": ["src/migration/**/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"]
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
 }
