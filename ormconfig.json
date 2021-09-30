@@ -7,7 +7,7 @@
   "database": "jin-nest-dev",
   "synchronize": false,
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "migrations": ["dist/migration/**/*{.ts,.js}"],
+  "migrations": ["dist/src/migration/**/*{.ts,.js}"],
   "cli": {
     "entitiesDir": "src/entity",
     "migrationsDir": "src/migration",
