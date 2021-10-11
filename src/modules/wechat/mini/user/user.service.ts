@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-10-11 20:21:14
+ * @LastEditTime: 2021-10-11 20:58:22
  */
 import {
   Injectable,
@@ -136,7 +136,31 @@ export class UserService {
       code,
     );
 
-    console.log('wxSession:', wxSession);
+    if (wxSession.errcode) {
+      const msg = `${wxSession.errcode}:${wxSession.errmsg}`;
+      Logger.error('获取微信openId失败：' + msg);
+      throw new HttpException(msg, HttpStatus.OK);
+    }
+
     return wxSession;
+  }
+
+  async signature(): Promise<string> {
+    const signature = 'bc404eedffb75c8d3cf3346acaf92466a7a793a1';
+    const rawData =
+      '{"nickName":"Javen","gender":1,"language":"zh_CN","city":"Shenzhen","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/icc2nhPAgI52Yx52hWXknQzYC122WeVIAoE1F9Tia3ZFmj8TUEr6M4rY10GDf4qTFT9RvdM3icDibq9BQ7kooYMW5g/132"}';
+    const session_key = 'syOEZf6faXl3JqAKh9FfvQ==';
+    const iv = 'wGZm1/t99wRHb4oiwDbybQ==';
+    const encryptedData =
+      'r9UTG7Yo3xlXZ1++2atDr/7So5b+GevtC4ZkxXeL+vCjYoMp50YB004IcCuPdbZlzd06Pvx0Yd6B92188ttbvkhCYb2uE8Wa8Nr1a/M72984gHj37TX4dX5f8/IMAXGqSPOMVjx14LZPMg8YDFYY5lUlYtHRvsOLl8zboZ9fR2B5+p3juPsnzyxuZZkUHYclRJ3qQzffZHMrelP7IHdMbUHVmsgpfwJc5Is6zhSpi/DKjHJxdIfHjl0wusP1Dy55WymSfxUfaEi63Fln9m8fUXF0mZprbFGl54sxKdabQuaQIL7aeETpMhNEmWBdtIetTuC3bkfBXLlW1b/JkUjBRdU2ZF4tRKHT24I6LnwfQMmXrEcbHA0JdU2CvU/TeF+iqYud4mgo115THVy76jxIPJXm65zbLuUVG6CvzOUSEOyWVSNQ7nbcwA3qrDiEuL4nYPusyoQpsZCxs+FUTEImmATD12R0/6Q1N557Ica59Wo=';
+    const key = Buffer.from(session_key, 'base64');
+    const baseIv = Buffer.from(iv, 'base64');
+
+    const signature2 = Kits.sha1(rawData + session_key);
+    if (signature2 === signature) {
+      const ecrypt = Kits.aes128cbcDecrypt(key, baseIv, encryptedData);
+      return ecrypt;
+    }
+    throw new HttpException('签名失败', HttpStatus.OK);
   }
 }

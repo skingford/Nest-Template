@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 00:34:26
- * @LastEditTime: 2021-09-19 10:14:25
+ * @LastEditTime: 2021-10-11 20:57:34
  */
 /*
 https://docs.nestjs.com/controllers#controllers
@@ -32,6 +32,12 @@ export class UserController {
   @ApiOperation({ summary: '微信用户登录', description: '微信用户登录' })
   async login(@Body() login: LoginMiniDto): Promise<WechatMiniUser> {
     return this.userService.login(login.code);
+  }
+
+  @Post('/signature')
+  @ApiOperation({ summary: '获取微信签名', description: '获取微信签名' })
+  async signature(): Promise<string> {
+    return this.userService.signature();
   }
 
   @Get('/user')
