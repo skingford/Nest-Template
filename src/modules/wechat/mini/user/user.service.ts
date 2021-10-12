@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-09-17 12:35:15
- * @LastEditTime: 2021-10-11 20:58:22
+ * @LastEditTime: 2021-10-12 09:01:58
  */
 import {
   Injectable,
@@ -115,6 +115,7 @@ export class UserService {
     return wxSession;
   }
 
+  // 微信登录
   async code2Session(code: string): Promise<CreateMiniUserDto> {
     const config = this.config.get(WECHAT_MINI_KEY);
     const { appid, secret } = config;
@@ -145,6 +146,7 @@ export class UserService {
     return wxSession;
   }
 
+  // 微信签名
   async signature(): Promise<string> {
     const signature = 'bc404eedffb75c8d3cf3346acaf92466a7a793a1';
     const rawData =
